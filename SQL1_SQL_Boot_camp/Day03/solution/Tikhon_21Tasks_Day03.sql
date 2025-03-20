@@ -21,6 +21,7 @@ LEFT JOIN person_order po ON m.id = po.menu_id
 WHERE po.id IS NULL
 ORDER BY m.pizza_name, m.price;
 --ex03
+--var1
 WITH gender_counts AS (
     SELECT 
         pv.pizzeria_id,
@@ -41,6 +42,54 @@ SELECT
 FROM gender_counts gc
 JOIN pizzeria pz ON gc.pizzeria_id = pz.id
 WHERE gc.male > gc.female
+ORDER BY pizzeria_name;
+--var2
+WITH gender_counts AS (
+    SELECT 
+        pv.pizzeria_id,
+        SUM(CASE WHEN p.gender = 'female' THEN 1 ELSE 0 END) AS female,
+        SUM(CASE WHEN p.gender = 'male' THEN 1 ELSE 0 END) AS male
+    FROM person_visits pv
+    JOIN person p ON pv.person_id = p.id
+    GROUP BY pv.pizzeria_id
+)
+SELECT 
+    pz.name AS pizzeria_name
+FROM gender_counts gc
+JOIN pizzeria pz ON gc.pizzeria_id = pz.id
+WHERE gc.female != gc.male
+ORDER BY pizzeria_name;
+--var3
+WITH gender_counts AS (
+    SELECT 
+        pv.pizzeria_id,
+        count(CASE WHEN p.gender = 'female' THEN 1 END) AS female,
+        count(CASE WHEN p.gender = 'male' THEN 1 END) AS male
+    FROM person_visits pv
+    JOIN person p ON pv.person_id = p.id
+    GROUP BY pv.pizzeria_id
+)
+SELECT 
+    pz.name AS pizzeria_name
+FROM gender_counts gc
+JOIN pizzeria pz ON gc.pizzeria_id = pz.id
+WHERE gc.female != gc.male
+ORDER BY pizzeria_name;
+--var4
+WITH gender_counts AS (
+    SELECT 
+        pv.pizzeria_id,
+        COUNT(*) FILTER(WHERE p.gender = 'female') as female,
+        COUNT(*) FILTER(WHERE p.gender = 'male') AS male
+    FROM person_visits pv
+    JOIN person p ON pv.person_id = p.id
+    GROUP BY pv.pizzeria_id
+)
+SELECT 
+    pz.name AS pizzeria_name
+FROM gender_counts gc
+JOIN pizzeria pz ON gc.pizzeria_id = pz.id
+WHERE gc.female != gc.male
 ORDER BY pizzeria_name;
 --ex04
 WITH pizzeria_genders AS (
