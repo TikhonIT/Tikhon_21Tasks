@@ -9,7 +9,7 @@ create table person_discounts(
     constraint fk_person_discounts_pizzeria_id foreign key(pizzeria_id) references pizzeria(id)
 );
 
- --ex01
+--ex01
 insert into person_discounts(id, person_id, pizzeria_id, discount)
 select
     row_number() over() as id,
