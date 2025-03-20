@@ -132,10 +132,11 @@ WHERE pizza_name = 'greek pizza' AND pizzeria_id = (SELECT id FROM pizzeria WHER
 --ex12
 INSERT INTO person_order (id, person_id, menu_id, order_date)
 SELECT
-    (SELECT MAX(id) FROM person_order) + ROW_NUMBER() OVER (ORDER BY p.id) AS new_id,
-    p.id AS person_id,
-    (SELECT id FROM menu WHERE pizza_name = 'greek pizza' AND pizzeria_id = (SELECT id FROM pizzeria WHERE name = 'Dominos')),
+    (SELECT MAX(id) FROM person_order) + ROW_NUMBER() OVER (ORDER BY p.id) AS id,
+    p.id,
+    (SELECT id FROM menu WHERE pizza_name = 'greek pizza' AND pizzeria_id = 2),
     '2022-02-25'
+FROM person p;
 --ex13
 DELETE FROM person_order
 WHERE order_date = '2022-02-25'
