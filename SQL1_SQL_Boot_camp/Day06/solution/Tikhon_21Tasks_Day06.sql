@@ -27,10 +27,10 @@ group by po.person_id, m.pizzeria_id;
 --ex02
 select p.name, m.pizza_name, m.price, (m.price * (1 - pd.discount / 100)) as discount_price, pz.name as pizzeria_name
 from person p
-join person_order po on po.person_id = p.id
-join menu m on po.menu_id = m.id
-join pizzeria pz on m.pizzeria_id = pz.id
-join person_discounts pd on pd.person_id = p.id and pd.pizzeria_id = pz.id
+left join person_order po on po.person_id = p.id
+left join menu m on po.menu_id = m.id
+left join pizzeria pz on m.pizzeria_id = pz.id
+left join person_discounts pd on pd.person_id = p.id and pd.pizzeria_id = pz.id
 order by p.name, m.pizza_name;
 
 --ex03
