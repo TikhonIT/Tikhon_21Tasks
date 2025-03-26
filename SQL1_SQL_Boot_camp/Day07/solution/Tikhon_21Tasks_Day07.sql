@@ -64,7 +64,8 @@ ORDER BY action_type, count DESC
 select name, SUM(count) as total_count
 from total
 group by name
-order by total_count desc;
+order by total_count desc
+limit 3;
 
 --ex04
 with visits_count as(
@@ -80,6 +81,7 @@ join person p on vc.person_id = p.id
 order by count_of_visits desc, p.name;
 
 --ex05
+--var1
 with orders_count as(
     select person_id, COUNT(*) as count_of_orders
     from person_order
@@ -91,6 +93,12 @@ select p.name
 from orders_count oc
 join person p on oc.person_id = p.id
 order by p.name;
+--var2
+SELECT DISTINCT
+    pn.name
+FROM person pn
+JOIN person_order po ON po.person_id = pn.id 
+ORDER BY pn.name
 
 --ex06
 SELECT pz.name AS name, COUNT(*) AS count_of_orders, ROUND(AVG(m.price), 2) AS average_price, MAX(m.price) AS max_price, MIN(m.price) AS min_price
