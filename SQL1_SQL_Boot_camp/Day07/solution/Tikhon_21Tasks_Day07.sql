@@ -98,7 +98,7 @@ SELECT DISTINCT
     pn.name
 FROM person pn
 JOIN person_order po ON po.person_id = pn.id 
-ORDER BY pn.name
+ORDER BY pn.name;
 
 --ex06
 SELECT pz.name AS name, COUNT(*) AS count_of_orders, ROUND(AVG(m.price), 2) AS average_price, MAX(m.price) AS max_price, MIN(m.price) AS min_price

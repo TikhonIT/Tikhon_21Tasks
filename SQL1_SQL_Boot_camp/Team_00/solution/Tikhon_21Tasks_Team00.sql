@@ -109,7 +109,7 @@ with
     where 
         ttc.cost = min_cost
     order by 
-        total_cost, tour
+        total_cost, tour;
 
 --ex01
 --var1
@@ -205,4 +205,4 @@ with
     where 
         ttc.cost in(min_cost, max_cost)
     order by 
-        total_cost, tour
+        total_cost, tour;
