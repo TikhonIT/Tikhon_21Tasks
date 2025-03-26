@@ -1,11 +1,11 @@
 --Team00
-CREATE TABLE gritsenko_ts.roads (
+CREATE TABLE roads (
 	point1 bpchar(1) NULL,
 	point2 bpchar(1) NULL,
 	cost int4 NULL
 );
 
-INSERT INTO gritsenko_ts.roads (point1, point2, cost)
+INSERT INTO roads (point1, point2, cost)
 VALUES
     ('a', 'b', 10),
     ('b', 'a', 10),
