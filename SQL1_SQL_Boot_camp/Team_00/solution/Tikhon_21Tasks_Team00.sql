@@ -1,4 +1,25 @@
 --Team00
+CREATE TABLE gritsenko_ts.roads (
+	point1 bpchar(1) NULL,
+	point2 bpchar(1) NULL,
+	cost int4 NULL
+);
+
+INSERT INTO gritsenko_ts.roads (point1, point2, cost)
+VALUES
+    ('a', 'b', 10),
+    ('b', 'a', 10),
+    ('a', 'c', 15),
+    ('c', 'a', 15),
+    ('a', 'd', 20),
+    ('d', 'a', 20),
+    ('b', 'c', 35),
+    ('c', 'b', 35),
+    ('b', 'd', 25),
+    ('d', 'b', 25),
+    ('c', 'd', 30),
+    ('d', 'c', 30);
+
 --ex00
 WITH RECURSIVE paths AS (
     SELECT 
