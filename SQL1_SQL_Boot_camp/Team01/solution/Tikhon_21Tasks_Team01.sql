@@ -65,6 +65,6 @@ group by
     c.name,
     (b.money * coalesce(rate.rate_to_usd, 1))
 order by 
-    name DESC,
+    name desc,
     lastname,
     currency_name;
